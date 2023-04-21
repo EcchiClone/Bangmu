@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Portfolio</title>
-</head>
-<body>
-  <p>Hello, World!</p>
-</body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>방무 계산기</title>
+        <script>
+            function cal() {
+                var v1 = Number(document.getElementById("v1").value); // 표시방무
+                var v2 = Number(document.getElementById("v2").value); // 방어율
+                var res;
+                res = 100.0 - (v2 * (1.0 - v1 * 0.01))
+                if (res <= 0) {
+                    res = 0
+                }
+                res = (Math.round(res * 100) / 100 + "%");
+                document.getElementById("res").textContent = res;
+            }
+            function reset() {
+                document.getElementById("v1").value = "";
+                document.getElementById("v2").value = "";
+                document.getElementById("res").value = "";
+            }
+        </script>
+    </head>
+    <body>
+        표시방무: <input type="text" id="v1" onchange="cal()"><br> 보스방어율: <input type="text" id="v2" onchange="cal()"><br> <br> 유효데미지:
+        <b>
+            <span id="res"></span>
+        </b>
+        <br><br>
+        <table border="1">
+            <th>방어율</th>
+            <th>보스</th>
+            <tr>
+                <td>200%</td>
+                <td>벨룸(카오스)</td>
+            </tr>
+            <tr>
+                <td>300%</td>
+                <td>윌(노말)</td>
+            </tr>
+        </table>
+    </body>
 </html>
